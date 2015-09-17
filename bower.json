@@ -1,0 +1,17 @@
+{
+  "name": "betsol-ng-networking",
+  "description": "Convenient networking in Angular.js",
+  "version": "0.0.0",
+  "main": "dist/betsol-ng-networking.js",
+  "ignore": [
+    "src",
+    ".*",
+    "gulpfile.js",
+    "karma.js",
+    "package.json"
+  ],
+  "devDependencies": {
+    "angular": "~1",
+    "angular-mocks": "~1"
+  }
+}
