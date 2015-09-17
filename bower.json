@@ -17,5 +17,9 @@
   "repository": {
     "type": "git",
     "url": "git://github.com/betsol/ng-networking.git"
-  }
+  },
+  "keywords": [
+    "angular",
+    "angular.js"
+  ]
 }
