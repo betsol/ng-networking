@@ -13,5 +13,9 @@
   "devDependencies": {
     "angular": "~1",
     "angular-mocks": "~1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/betsol/ng-networking.git"
   }
 }
