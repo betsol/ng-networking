@@ -25,6 +25,9 @@
 
     .provider('networking', function () {
       var service = {
+        setBaseUrl: setBaseUrl,
+        getBaseUrl: getBaseUrl,
+        clearBaseUrl: clearBaseUrl,
         applyBaseUrl: applyBaseUrl
       };
       var provider = {

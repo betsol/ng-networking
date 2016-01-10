@@ -3,7 +3,7 @@
 ## Version 0.0.1
 (11 Jan 2016)
 
-- Minor internal changes
+- Base URL now can be manipulated through `networking` service
 
 
 ## Version 0.0.0

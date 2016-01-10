@@ -37,6 +37,9 @@ describe('Networking Service', function () {
 
   it('all public methods of networking service are exposed', function () {
     expect(networking.applyBaseUrl).to.be.a('function');
+    expect(networking.setBaseUrl).to.be.a('function');
+    expect(networking.getBaseUrl).to.be.a('function');
+    expect(networking.clearBaseUrl).to.be.a('function');
   });
 
   it('URLs are properly merged', function () {
