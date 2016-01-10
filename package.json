@@ -1,7 +1,7 @@
 {
   "name": "betsol-ng-networking",
   "description": "Convenient networking in Angular.js",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "homepage": "https://github.com/betsol/ng-networking",
   "license": "MIT",
   "main": "dist/betsol-ng-networking.js",
@@ -14,13 +14,14 @@
     "gulp-rename": "~1",
     "gulp-uglify": "~0",
     "gulp-util": "~2",
-    "run-sequence": "^1.1.3",
     "karma": "^0.13.9",
     "karma-chrome-launcher": "^0.2.0",
+    "karma-expect": "^1.1.0",
     "karma-firefox-launcher": "^0.1.6",
     "karma-mocha": "^0.2.0",
     "karma-mocha-reporter": "^1.1.1",
-    "karma-expect": "^1.1.0"
+    "mocha": "^2.3.4",
+    "run-sequence": "^1.1.3"
   },
   "repository": {
     "type": "git",
@@ -28,6 +29,12 @@
   },
   "keywords": [
     "angular",
-    "angular.js"
+    "angular.js",
+    "network",
+    "networking",
+    "http",
+    "request",
+    "ajax",
+    "xhr"
   ]
 }

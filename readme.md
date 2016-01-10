@@ -22,7 +22,7 @@ Convenient networking in Angular.js.
 
 ### Install library with NPM
 
-`npm install --save betsol-ng-networking`
+`npm i --save betsol-ng-networking`
 
 
 ### Add library to your page
@@ -84,7 +84,7 @@ Fork, clone, create a feature branch, commit, create a PR.
 
 Run:
 
-- `npm install && bower install` to initialize the project
+- `npm i && bower install` to initialize the project
 - `gulp build` to re-build the dist files
 
 Do not add dist files to the PR itself.

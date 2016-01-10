@@ -11,9 +11,9 @@
 
   angular.module('betsol.networking', [])
 
-    //=====================//
-    // NETWORKING PROVIDER //
-    //=====================//
+    //====================//
+    // NETWORKING SERVICE //
+    //====================//
 
     .provider('networking', function () {
       var service = {
@@ -22,16 +22,11 @@
       var provider = {
         $get: function () {
           return service;
-        }
-      };
-      provider.setBaseUrl = function (newBaseUrl) {
-        baseUrl = newBaseUrl;
-      };
-      provider.getBaseUrl = function () {
-        return baseUrl;
-      };
-      provider.clearBaseUrl = function () {
-        baseUrl = null;
+        },
+        setBaseUrl: setBaseUrl,
+        getBaseUrl: getBaseUrl,
+        clearBaseUrl: clearBaseUrl,
+        applyBaseUrl: applyBaseUrl
       };
       return provider;
     })
@@ -54,7 +49,7 @@
           _config.data = body;
         }
         if (config) {
-          Angular.extend(_config, config);
+          angular.extend(_config, config);
         }
         return $http(_config)
           .then(function (httpResponse) {
@@ -88,6 +83,18 @@
 
   ;
 
+
+  function setBaseUrl (newBaseUrl) {
+    baseUrl = newBaseUrl;
+  }
+
+  function getBaseUrl () {
+    return baseUrl;
+  }
+
+  function clearBaseUrl () {
+    baseUrl = null;
+  }
 
   /**
    * @param {string} url

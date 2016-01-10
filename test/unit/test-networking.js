@@ -35,6 +35,10 @@ describe('Networking Service', function () {
     expect(networkingProvider.clearBaseUrl).to.be.a('function');
   });
 
+  it('all public methods of networking service are exposed', function () {
+    expect(networking.applyBaseUrl).to.be.a('function');
+  });
+
   it('URLs are properly merged', function () {
 
     networkingProvider.setBaseUrl('/api');
@@ -50,5 +54,7 @@ describe('Networking Service', function () {
     expect(networking.applyBaseUrl('/users')).to.be.equal('/users');
 
   });
+
+  // @todo: test request service
 
 });

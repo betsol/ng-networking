@@ -1,6 +1,6 @@
 /**
- * betsol-ng-networking - A template project for Angular.js modules
- * @version v0.0.0
+ * betsol-ng-networking - Convenient networking in Angular.js
+ * @version v0.0.1
  * @link https://github.com/betsol/ng-networking
  * @license MIT
  *
@@ -19,9 +19,9 @@
 
   angular.module('betsol.networking', [])
 
-    //=====================//
-    // NETWORKING PROVIDER //
-    //=====================//
+    //====================//
+    // NETWORKING SERVICE //
+    //====================//
 
     .provider('networking', function () {
       var service = {
@@ -30,16 +30,11 @@
       var provider = {
         $get: function () {
           return service;
-        }
-      };
-      provider.setBaseUrl = function (newBaseUrl) {
-        baseUrl = newBaseUrl;
-      };
-      provider.getBaseUrl = function () {
-        return baseUrl;
-      };
-      provider.clearBaseUrl = function () {
-        baseUrl = null;
+        },
+        setBaseUrl: setBaseUrl,
+        getBaseUrl: getBaseUrl,
+        clearBaseUrl: clearBaseUrl,
+        applyBaseUrl: applyBaseUrl
       };
       return provider;
     })
@@ -50,18 +45,21 @@
 
     .service('request', ['$http', '$q', function ($http, $q) {
       var service = {};
-      service.request = function (method, url, query, body) {
-        var config = {
+      service.request = function (method, url, query, body, config) {
+        var _config = {
           method: method,
           url: applyBaseUrl(url)
         };
         if (query) {
-          config.params = query;
+          _config.params = query;
         }
         if (body) {
-          config.data = body;
+          _config.data = body;
         }
-        return $http(config)
+        if (config) {
+          angular.extend(_config, config);
+        }
+        return $http(_config)
           .then(function (httpResponse) {
             return httpResponse.data;
           })
@@ -70,23 +68,41 @@
           })
         ;
       };
-      service.get = function (url, query) {
-        return service.request('get', url, query);
+      service.head = function (url, query, config) {
+        return service.request('head', url, query, null, config);
       };
-      service.post = function (url, query, body) {
-        return service.request('post', url, query, body);
+      service.get = function (url, query, config) {
+        return service.request('get', url, query, null, config);
       };
-      service.put = function (url, query, body) {
-        return service.request('put', url, query, body);
+      service.post = function (url, query, body, config) {
+        return service.request('post', url, query, body, config);
       };
-      service.delete = function (url, query, body) {
-        return service.request('delete', url, query, body);
+      service.put = function (url, query, body, config) {
+        return service.request('put', url, query, body, config);
+      };
+      service.patch = function (url, query, body, config) {
+        return service.request('patch', url, query, body, config);
+      };
+      service.delete = function (url, query, body, config) {
+        return service.request('delete', url, query, body, config);
       };
       return service;
     }])
 
   ;
 
+
+  function setBaseUrl (newBaseUrl) {
+    baseUrl = newBaseUrl;
+  }
+
+  function getBaseUrl () {
+    return baseUrl;
+  }
+
+  function clearBaseUrl () {
+    baseUrl = null;
+  }
 
   /**
    * @param {string} url
