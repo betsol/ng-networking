@@ -1,5 +1,13 @@
 # betsol-ng-networking changelog
 
+## Version 0.0.2
+(14 Jan 2016)
+
+- Introduced global config and API to change it
+- Added two options `fullResponseOnSuccess` and `fullResponseOnError` to the request method
+- Done minor refactoring
+
+
 ## Version 0.0.1
 (11 Jan 2016)
 

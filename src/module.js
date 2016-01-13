@@ -1,4 +1,4 @@
-(function (window, angular) {
+(function (angular) {
 
   'use strict';
 
@@ -7,6 +7,13 @@
   //====================//
 
   var baseUrl = null;
+
+  var defaultConfig = {
+    fullResponseOnSuccess: false,
+    fullResponseOnError: false
+  };
+
+  var globalConfig = angular.copy(defaultConfig);
 
 
   angular.module('betsol.networking', [])
@@ -17,6 +24,8 @@
 
     .provider('networking', function () {
       var service = {
+        setGlobalConfig: setGlobalConfig,
+        extendGlobalConfig: extendGlobalConfig,
         setBaseUrl: setBaseUrl,
         getBaseUrl: getBaseUrl,
         clearBaseUrl: clearBaseUrl,
@@ -26,6 +35,8 @@
         $get: function () {
           return service;
         },
+        setGlobalConfig: setGlobalConfig,
+        extendGlobalConfig: extendGlobalConfig,
         setBaseUrl: setBaseUrl,
         getBaseUrl: getBaseUrl,
         clearBaseUrl: clearBaseUrl,
@@ -41,25 +52,27 @@
     .service('request', function ($http, $q) {
       var service = {};
       service.request = function (method, url, query, body, config) {
-        var _config = {
+        var httpConfig = angular.extend({}, globalConfig, {
           method: method,
           url: applyBaseUrl(url)
-        };
+        });
         if (query) {
-          _config.params = query;
+          httpConfig.params = query;
         }
         if (body) {
-          _config.data = body;
+          httpConfig.data = body;
         }
         if (config) {
-          angular.extend(_config, config);
+          angular.extend(httpConfig, config);
         }
-        return $http(_config)
+        return $http(httpConfig)
           .then(function (httpResponse) {
-            return httpResponse.data;
+            return (httpConfig.fullResponseOnSuccess ? httpResponse : httpResponse.data);
           })
           .catch(function (httpResponse) {
-            return $q.reject(httpResponse.data);
+            return $q.reject(
+              httpConfig.fullResponseOnError ? httpResponse : httpResponse.data
+            );
           })
         ;
       };
@@ -86,6 +99,24 @@
 
   ;
 
+
+  /**
+   * Replaces global config with the specified one.
+   *
+   * @param {object} config
+   */
+  function setGlobalConfig (config) {
+    globalConfig = angular.extend({}, defaultConfig, config);
+  }
+
+  /**
+   * Extends global config with the specified parameters.
+   *
+   * @param {object} config
+   */
+  function extendGlobalConfig (config) {
+    angular.extend(globalConfig, config);
+  }
 
   function setBaseUrl (newBaseUrl) {
     baseUrl = newBaseUrl;
@@ -120,4 +151,4 @@
     return baseUrl + url;
   }
 
-})(window, angular);
+})(angular);
