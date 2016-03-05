@@ -1,5 +1,11 @@
 # betsol-ng-networking changelog
 
+## Version 0.0.3
+(05 Mar 2016)
+
+- Added support for CommonJS
+
+
 ## Version 0.0.2
 (14 Jan 2016)
 

@@ -1,7 +1,7 @@
 {
   "name": "betsol-ng-networking",
   "description": "Convenient networking in Angular.js",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "main": "dist/betsol-ng-networking.js",
   "ignore": [
     "src",

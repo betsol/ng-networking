@@ -1,10 +1,10 @@
 {
   "name": "betsol-ng-networking",
   "description": "Convenient networking in Angular.js",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "homepage": "https://github.com/betsol/ng-networking",
   "license": "MIT",
-  "main": "dist/betsol-ng-networking.js",
+  "main": "index.js",
   "devDependencies": {
     "del": "~0",
     "gulp": "~3",
